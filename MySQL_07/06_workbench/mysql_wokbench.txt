@@ -1,0 +1,340 @@
+==============================================================================================
+                                       MySQL Workbench
+==============================================================================================
+
+
+Plan :
+- Télécharger et installer MySQL Workbench
+- Se connecter à localhost
+- Créer une BDD, des tables, des enregistrements, et les supprimer 
+- Créer une BDD à partir d'un modèle
+- Importer le modèle dans MySQL localhost
+- Exporter un modèle de MySQL localhost vers Workbench (bdd taxis à importer au préalable)
+
+
+
+
+
+-------------------------------------------
+Télécharger et installer MySQL Workbench
+-------------------------------------------
+
+- Dans google faire "télécharger mysql workbench" > cliquer sur le lien https://www.mysql.com/fr/products/workbench/ > bouton "Download now" > en bas de la page "Download MySQL Workbench" cliquer sur "Download" à droite de "Windows (x86, 64-bit), MSI Installer" et de "(mysql-workbench-community-8.0.13-winx64.msi)".
+
+- Puis l'installer...
+
+
+
+-------------------------------------------
+Se connecter à localhost
+-------------------------------------------
+
+Home (cliquer sur la maison) 
+> BDD 
+> Cliquer sur le "+" à côté de MySQL Connections 
+> dans le formulaire, remplir Connection Name = localhost, Hostname = localhost 
+> Test Connection. Si un "Connection Warning (localhost)" apparaît, cliquer sur "Continue Anyway".
+
+En cas de succès du test, une modale de confirmation s'affiche > cliquer sur OK.
+
+Un nouveau bloc apparaît avec la connexion à localhost > cliquer dessus pour se connecter ! Si un "Connection Warning (localhost)" apparaît encore, cliquer sur "Continue Anyway" pour se connecter.
+
+
+
+Dans la nouvelle fenêtre qui s'affiche on trouve :
+- Colonne de gauche : dans "SCHEMAS" les BDD de notre serveur (les BDD sont appelées SCHEMAS dans Workbench), leurs tables / vues / procédures stockées / fonctions : on double-clique sur "Entreprise" pour sélectionner la BDD.
+
+- Au centre : onglet "Query 1" pour faire des requêtes SQL : 
+  Exemple : SELECT * FROM employes > cliquer sur l'icône "éclair"
+
+  Remarque : pour faire cette requête automatiquement : over sur le nom de la table dans SCHEMAS (colonne de gauche) puis clic sur icône "table avec éclair" pour afficher la table !
+
+- Les résultats de la requête s'affichent en dessous.
+
+- Dans le bloc "output" du bas s'affichent les message de réussite ou d'erreur des requêtes.
+
+
+
+
+
+-------------------------------------------------------------------
+Créer une BDD, des tables, des enregistrements, et les supprimer 
+-------------------------------------------------------------------
+
+Nous allons créer la BDD "boutique" avec une table "produit".
+
+Rappel : Les BDD sont appelées SCHEMAS dans Workbench.
+
+
+Pour créer une BDD depuis WB :
+> onglet Localhost
+> icône "+BDD" (Create a new schema in the connected server)
+> Name = son nom "boutique"
+> Charset/Collation = utf8mb4 / utf8mb4_general_ci
+> Bouton Apply en bas à droite pour envoyer la modification dans MySQL !
+
+
+Pour créer une table et ses colonnes depuis WB :
+> onglet Localhost
+> sélectionner la BDD dans la colonne SCHEMAS en double-cliquant sur son nom
+> clic icône "+table" (Create a new table in the active schema in connected server)
+> Table Name = son nom "produit"
+> Charset/Collation = utf8mb4 / utf8mb4_general_ci
+> Dans "Column Name" on crée les colonnes "id_produit" INT PK NN AI, 
+  puis "nom" VARCHAR(50), 
+  et "prix" FLOAT 
+> Bouton Apply en bas à droite pour envoyer la modification dans MySQL ! 
+
+
+Pour créer de nouveaux enregistrements, puis synchroniser la table de WB vers MySQL :
+> onglet Localhost
+> over sur le nom de la table "produit" dans la colonne SCHEMAS => des icônes apparaissent
+> clic sur icône "table avec un éclair" pour récupérer la table de MySQL et la mettre à jour dans WB
+Puis :
+> compléter la table avec des nouveaux enregistrements en cliquant sur les cellules du "Result Grid" : on crée "Jean", "Pull", "Robe" sans remplir l'id_produit
+> Bouton Apply en bas à droite pour envoyer la modification dans MySQL !
+
+
+Pour afficher ou synchroniser une table de MySQL vers WB :
+> onglet Localhost
+> over sur le nom de la table "produit" dans la colonne SCHEMAS => des icônes apparaissent
+> clic sur icône "table avec un éclair" pour récupérer la table de MySQL et la mettre à jour dans WB
+
+
+
+---------
+Pour supprimer un enregistrement dans WB et synchroniser avec MySQL :
+> onglet Localhost
+> over sur le nom de la table dans la colonne SCHEMAS => des icônes apparaissent
+> clic sur icône "table avec un éclair" pour récupérer la table de MySQL et la mettre à jour dans WB
+> dans le jeu de résultats : clic droit sur une ligne >  Delete Row(s)
+> bouton Apply en bas à droite pour envoyer la modification dans MySQL !
+
+
+Pour supprimer une table depuis WB :
+> onglet Localhost
+> clic droit sur le nom "produit" de la table dans la colonne SCHEMAS
+> Drop Table
+> Modale de confirmation : Drop now pour supprimer maintenant OU Review SQL pour vérifier la requête SQL avant suppression
+
+
+Pour supprimer une BDD depuis WB :
+> onglet Localhost
+> clic droit sur le nom de la BDD "boutique" dans la colonne SCHEMAS
+> Drop Schema
+> Modale de confirmation : Drop now pour supprimer maintenant OU Review SQL pour vérifier la requête SQL avant suppression
+
+
+
+
+
+------------------------------------------------------------------
+Créer une BDD à partir d'un Modèle Conceptuel de Données ou MCD
+------------------------------------------------------------------
+
+Pour cela nous allons créer un "Model".
+
+Définition : un Modèle Conceptuel de Données ou encore MCD est un diagramme qui représente la modélisation de la BDD en visualisant la structure des tables et les liens relationnelles entre-elles.
+
+> Sur la page Home (cliquer sur la maison) > cliquer sur le schéma "models" > cliquer sur le "+" à côté de Models > une fenêtre s'affiche
+  OU 
+> menu File > New Model.
+
+
+-----
+Création de la BDD :
+
+> double-clique sur l'onglet "mydb" pour changer son nom : dans l'onglet en dessous remplir Name = sport, Charset/Collation = utf8mb4 [affiche que les utf8mb4 dans le second sélecteur] et utf8mb4_general_ci
+
+On enregistre le modèle : > menu File > Save Model As... > nommer le fichier "sport" et enregistrer
+
+Pour l'instant la BDD n'est pas dans PMA... on ne l'a pas encore exportée !
+
+
+> double-clique sur l'icône "Add New Diagram" en haut de la première fenêtre > une page quadrillée VIDE s'affiche 
+
+
+
+-----
+Création des tables :
+
+> clic sur icône "Place a new table" > clic dans la page pour placer la nouvelle table 
+								     > double-clic sur cette table
+									 > dans l'onglet en bas : Table Name = etudiant
+								     > puis créer les champs dans "Column Name" en-dessous :
+								    			id_etudiant INT PK NN AI
+								    			nom         VARCHAR(30)
+								    			prenom      VARCHAR(30)
+
+								      Note : si un champ "etudiantcol" se crée automatiquement, le supprimer avec un clic droit dessus > Delete Selected
+
+On peut créer directement quelques enregistrement dans cette table :
+> Onglet "Inserts" tout en bas > remplir les champs nom et prenom pour 2 étudiants > sauvegarder								      
+
+
+--------
+De la même manière on crée la seconde table "sport" de notre BDD :
+									 > onglet Columns (si je suis encore sur Inserts) > Table Name = sport
+									 > puis créer les champs :
+									    id_sport   INT PK AI
+									    nom_sport  VARCHAR(30)
+
+Puis on remplit la table :
+> Onglet "Inserts" tout en bas > remplir le champ nom_sport pour 3 sports > sauvegarder
+
+
+--------
+On crée la dernière table "pratique" qui est une table de jointure qui indique quel étudiant pratique quels sports :
+									 > onglet Columns (si je suis encore sur Inserts) > Table Name = pratique 
+									 > puis créer les 3 champs :
+							            id_pratique   INT PK AI
+							            id_etudiant   INT
+							            id_sport      INT
+
+--------
+Puis on crée les enregistrements dans la table :
+> Onglet "Inserts" tout en bas > remplir les champ id_etudiant et id_sport :
+														1            1
+														1            2
+														2            3
+
+
+
+--------
+On met la table "pratique" entre les 2 autres tables pour faire les liens relationnels entre elles :
+
+Un étudiant pratique un sport : c'est le rôle de la table "pratique" d'enregistrer quel étudiant pratique quels sports. On lie donc dans la table "pratique" la clé étrangère "pratique.id_etudiant" avec la clé primaire "etudiant.id_etudiant", puis la clé étrangère "pratique.id_sport" avec la clé primaire "sport.id_sport" :
+
+> clic sur l'icône relation 1:n (avec un trait PLEIN avec PIPETTE = relation entre 2 colonnes existantes) car 1 étudiant peut avoir plusieurs pratiques de sport
+> clic sur la clé étrangère "pratique.id_etudiant" puis sur la clé primaire "etudiant.id_etudiant"
+
+
+> clic sur l'icône relation 1:n (avec un trait PLEIN avec PIPETTE = relation entre 2 colonnes existantes) car 1 sport peut avoir plusieurs étudiants qui le pratiquent
+> clic sur la clé étrangère "pratique.id_sport" puis sur la clé primaire "etudiant.id_sport"
+
+
+Notes : 
+	- icône relation 1:n avec la pipette quand les colonnes (champs) existent déjà. 
+	- icône relation 1:n sans la pipette crée automatiquement les champs à lier. 
+	  Relation 1:n par exemple : 1 hôtel (1) a plusieurs chambres (N) 
+    - icône relation n:m crée automatiquement une table de jointure entre 2 tables avec des relations 1:n entre chaque table, exemple : 1 étudiant (1) fait plusieurs sports (N) et 1 sport (1) concerne plusieurs étudiants (N)
+    - icône relation 1:1 quand par exemple 1 produit (table produit avec nom et reference) a 1 détail produit unique (table detail_produit avec prix, description...)
+
+
+[Trait pointillé = relation non identifiante. Exemple : 
+ Un livre appartient à un propriétaire et un propriétaire peut posséder plusieurs livres. Mais, le livre peut exister aussi sans le propriétaire, et la propriété peut changer d'un propriétaire à l'autre. La relation entre un livre et un propriétaire est une relation non identifiante.
+
+ Trait plein = relation identifiante. Exemple :
+ En revanche, un livre est et DOIT ETRE écrit par un auteur - il ne peut exister sans un auteur. Par conséquent, la relation entre le livre et l'auteur est une relation identifiante.]
+ 
+
+
+
+--------------------------------------------------------
+Importer le modèle de Workbench dans localhost MySQL
+--------------------------------------------------------
+
+1- On lance le serveur localhost : Home > BDD > clic sur localhost
+
+2- Retour sur l'onglet "EER Diagram" 
+   > menu Database 
+   > Forward Engineer... 
+   > Stored Connection = localhost 
+   > next 
+   > cocher "Generate INSERT statements for tables" pour insérer les enregistrements s'il y en a
+   > next 
+   > les requêtes SQL de création de la BDD et de son contenu s'affiche > retirer au besoin (selon version de MySQL dans Wamp) les mots clés VISIBLE de ces requêtes 
+   > next 
+   > vérifier le message de réussite.
+
+3- Dans l'onglet "localhost" > rafraîchir l'affichage dans SCHEMAS avec l'icône à droite > on voit notre BDD "sport" avec ses tables !
+
+4- Pour afficher le contenu de la table étudiant : sélectionner la BDD "sport" à gauche > puis over sur la table "etudiant" : 3 icônes s'affichent > cliquer sur l'icône "table avec un éclair"
+
+
+
+Note : en cas d'erreur sur le nom d'une table ou d'un champ par exemple, survoler la table à gauche dans SCHEMAS puis cliquer sur l'icône "clé à molette" : à droite s'affiche les caractéristiques de la table et des champs. Modifier puis faire Apply pour envoyer dans MySQL. 
+
+
+
+
+--------------------------------------------------------------
+Exporter un modèle de localhost MySQL vers Workbench : taxis
+--------------------------------------------------------------
+
+PREALABLE : on importe la bdd taxis [si ce n'est pas déjà fait, sinon passer ce chapitre].
+
+> clic sur icône "+BDD" (= Create a new schema in the connected server )
+> Name = taxis, Charset/Collation = utf8 - utf8_general_ci
+> Apply > Apply > Finish
+
+> on visualise la BDD taxis (après avoir rafraichi SCHEMAS) dans le panneau de gauche
+
+> clic sur Data Import/Restore dans MANAGEMENT (panneau de gauche)
+> clic sur Import from Self-Contained File > sélectionner taxis_sans_les_contraintes_sql
+> Default Target Schema = taxis (= choix de la BDD)
+> Start Import
+> vérifier les tables dans la BDD taxis dans le panneau de gauche
+
+
+--------
+Exporter un modèle de localhost MySQL vers Workbench : taxis 
+
+Objectif : récupérer automatiquement le  Modèle Conceptuel de Données (diagramme MCD) de la BDD taxis. 
+
+
+> fermer l'onglet "EER Diagram" 
+> Menu Database 
+> Reverse Engineer...
+> dans la modale  
+> choisir localhost 
+> Next
+> Sélectionner le schéma à exporter : taxis 
+> Next 
+> Next 
+> Execute
+> le schéma s'affiche (sans les relations que l'on va faire dans un prochain chapitre)
+> sauvegarder le modèle taxis dans votre dossier de travail "MySQL Workbench" : menu File > Save Model As... > nommer le fichier "taxis" et enregistrer
+
+
+
+------------------------------------------
+Exercice : créer un MCD d'une libraire et l'importer dans MySQL  
+------------------------------------------
+
+Créer le MCD d'une librairie qui vend (date de la vente, livre vendu, client) des livres (titre, auteur, prix) à des clients inscrits (nom, prénom,	adresse). Vous ferez les liens relationnels entre les tables. Vous créez des enregistrements et importez la BDD complète dans MySQL.
+
+Exemples de titres :
+GUY DE MAUPASSANT | Une vie
+GUY DE MAUPASSANT | Bel-Ami                 
+HONORE DE BALZAC  | Le pere Goriot          
+ALPHONSE DAUDET   | Le Petit chose          
+ALEXANDRE DUMAS   | La Reine Margot         
+ALEXANDRE DUMAS   | Les Trois Mousquetaires
+
+
+
+
+----------------------------------------------------------- FIN ---------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

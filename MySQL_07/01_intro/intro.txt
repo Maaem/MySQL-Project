@@ -1,0 +1,49 @@
+************************************************************
+                    Introducion MySQL
+************************************************************
+
+---------------------
+    Définitions
+---------------------
+
+SQL : Structured Query Language
+Il s'agit d'un langage de requetes qui permet d'interroger une BDD.
+
+BDD pour Base de données :
+Une BDD est un emplacement de données sauvegardées, comme un entrepot et permet d'effectuer des opératons de lecture et 
+d'écriture sur ces données.
+
+Exemple : dans un site de ecommerce, il y a une BDD "boutique" avec une table "produit", "membre", "commande"... Dans la table "membre" 
+les internautes sont inscrits avec leur pseudo, mdp, prénom, nom ... et chaque membre est enregistré sur une ligne qui possède une clé
+primaire pour l'identifier.
+
+SGBD : Système de Gestion de Base de Données
+C'et un logiciel qui sert d'interfacz entre utilisateurs et les BDD permettant d'introduire des données, de les mettre à jour 
+et d'y acceder.
+Nous utiliserons MySQL car il s'agit du SGBD le plus utilisé dans le domaine du web.
+
+CRUD : acronyme anglais pour Create, Read, Update, Delete qui désigne les 4 opérations de base pour le stockage et la manipulation 
+des données en BDD.
+
+
+------------------------------------------
+             Utilisation du SQL
+------------------------------------------
+
+Exemple avec un formulaire d'inscription et un formulaire de connexion 
+==> traitement des donnéessssss en PHP => enregistrement (inscription) ou lecture (connexion) des données en BDD avec du SQL.
+
+------------------------------------------
+            SGBDR et SGBD NoSQL
+------------------------------------------
+
+On distingue 2 principaux SGBD : 
+
+-> les SGBDR pour Système de Gestion de Base de Données Relationnelles, par ex MySQL.
+    Ils permettent de faire des relations entre les tables.
+    Le principe du modèle relationnel consiste à stocker les données dans des tables définies par des colonnes (champs),
+    des  clés étrangères : cela permet de ne pas stocker l'information plusieurs fois et de pouboir facilement consolider
+    les données avec des requetes SQL.
+
+-> Les NoSQL pour Not Only SQL. Cela ressemble fortement à un grand tableau à une seule dimension avec des millions 
+d'enregistrements. Il n'y a plus de colonnes, on parle de BDD clé-valeur. Ex : MongoDB
